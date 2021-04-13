@@ -3,6 +3,14 @@ const expressHandlebars = require('express-handlebars')
 
 const app = express()
 
+const fortunes = [
+    "Conquer your fears o they will conquer you.",
+    "Rivers need springs.",
+    "Do not fear what you don´t know.",
+    "You will have a pleasant surprise.",
+    "Whenerver possible, keep it simple.",
+]
+
 /* Configura o view engine Handlebars 
 * Cria um view engine e configura o Express para usá-lo por padrão
 */
@@ -24,9 +32,10 @@ app.get('/', (req, res) =>
     res.render('home')
 )
 
-app.get('/about', (req, res) =>
-    res.render('about')
-)
+app.get('/about', (req, res) => {
+    const randomFortune = fortunes[Math.floor(Math.random()*fortunes.length)]
+    res.render('about', { fortune: randomFortune })
+})
 
 /* Página 404 personalizada */
 /* Método use foi usado com o qual o Express adiciona o Middleware */

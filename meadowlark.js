@@ -10,6 +10,11 @@ app.engine('handlebars', expressHandlebars({
     defaultLayout: 'main',
 }))
 
+/* O middleware static produz os mesmos efeitos da criação de uma rota para cada arquivo estático a ser distribuido de modo a
+* renderizá-lo e retorná-lo para o cliente
+*/
+app.use(express.static(__dirname + '/public'))
+
 app.set('view engine', 'handlebars')
 
 const port = process.env.PORT || 3000
